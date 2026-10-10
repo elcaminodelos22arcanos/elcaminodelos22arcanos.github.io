@@ -1,219 +1,560 @@
+
 <!doctype html>
-<html lang="en">
+<html lang="es">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="A personal website for research, projects, and ideas.">
-  <title>Your Name — Personal Website</title>
+
+  <meta name="description" content="El Camino de los 22 Arcanos. Escuela de tarot, introspección y evolución personal.">
+
+  <title>El Camino de los 22 Arcanos</title>
+
   <style>
     :root {
-      --ink: #202a36;
-      --muted: #687586;
-      --line: #e4e8ed;
-      --paper: #ffffff;
-      --wash: #f6f8fa;
-      --accent: #365d83;
-      --accent-soft: #edf3f8;
+      --ink: #30283b;
+      --muted: #777080;
+      --line: #e8e1eb;
+      --paper: #fffdfd;
+      --wash: #f8f3f8;
+      --accent: #79558c;
+      --accent-soft: #f1e9f5;
       --width: 900px;
     }
-    * { box-sizing: border-box; }
-    html { scroll-behavior: smooth; }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
     body {
       margin: 0;
       background: var(--paper);
       color: var(--ink);
-      font: 16px/1.7 Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      font: 16px/1.8 Inter, -apple-system,
+        BlinkMacSystemFont, "Segoe UI", sans-serif;
       -webkit-font-smoothing: antialiased;
     }
-    a { color: var(--accent); text-decoration-thickness: 1px; text-underline-offset: 3px; }
-    a:hover { color: #1e3e5d; }
-    .shell { width: min(var(--width), calc(100% - 44px)); margin: 0 auto; }
-    header { padding-top: 34px; }
-    .identity { display: flex; align-items: center; gap: 14px; }
-    .mark {
-      width: 43px; height: 43px; border-radius: 12px;
-      display: grid; place-items: center; flex: 0 0 auto;
-      background: var(--ink); color: white; font-weight: 700; letter-spacing: -.04em;
+
+    a {
+      color: var(--accent);
+      text-underline-offset: 3px;
     }
-    h1 { margin: 0; font-size: clamp(1.35rem, 3vw, 1.7rem); letter-spacing: -.045em; line-height: 1.2; }
-    .tagline { margin: 5px 0 0; color: var(--muted); font-size: .92rem; }
+
+    a:hover {
+      color: #513762;
+    }
+
+    .shell {
+      width: min(var(--width), calc(100% - 44px));
+      margin: 0 auto;
+    }
+
+    header {
+      padding-top: 34px;
+    }
+
+    .identity {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+
+    .logo {
+      width: 62px;
+      height: 62px;
+      border-radius: 14px;
+      object-fit: contain;
+      flex: 0 0 auto;
+    }
+
+    h1 {
+      margin: 0;
+      font-size: clamp(1.25rem, 3vw, 1.7rem);
+      letter-spacing: -.045em;
+      line-height: 1.3;
+    }
+
+    .tagline {
+      margin: 5px 0 0;
+      color: var(--muted);
+      font-size: .92rem;
+    }
+
     nav {
-      display: flex; gap: 26px; overflow-x: auto; margin-top: 28px;
-      border-bottom: 1px solid var(--line); scrollbar-width: thin;
+      display: flex;
+      gap: 28px;
+      overflow-x: auto;
+      margin-top: 28px;
+      border-bottom: 1px solid var(--line);
+      scrollbar-width: thin;
     }
+
     .tab {
-      appearance: none; border: 0; border-bottom: 2px solid transparent;
-      background: transparent; color: var(--muted); cursor: pointer;
-      font: inherit; font-size: .94rem; white-space: nowrap;
-      padding: 0 0 13px; margin-bottom: -1px;
+      appearance: none;
+      border: 0;
+      border-bottom: 2px solid transparent;
+      background: transparent;
+      color: var(--muted);
+      cursor: pointer;
+      font: inherit;
+      font-size: .96rem;
+      white-space: nowrap;
+      padding: 0 0 13px;
+      margin-bottom: -1px;
     }
-    .tab:hover { color: var(--ink); }
-    .tab[aria-selected="true"] { color: var(--accent); border-bottom-color: var(--accent); font-weight: 600; }
-    main { min-height: 60vh; padding: 43px 0 72px; }
-    .panel { animation: appear .18s ease-out; }
-    .panel[hidden] { display: none; }
-    @keyframes appear { from { opacity: .35; transform: translateY(3px); } to { opacity: 1; transform: translateY(0); } }
-    h2 { margin: 0 0 14px; font-size: clamp(1.8rem, 4vw, 2.5rem); line-height: 1.2; letter-spacing: -.055em; }
-    h3 { margin: 28px 0 7px; font-size: 1.12rem; letter-spacing: -.02em; }
-    p { margin: 0 0 16px; }
-    .lead { max-width: 690px; color: #495667; font-size: 1.1rem; }
-    .eyebrow { color: var(--accent); font-size: .76rem; text-transform: uppercase; letter-spacing: .12em; font-weight: 700; margin-bottom: 10px; }
-    .hero-image { width: 100%; aspect-ratio: 2.2 / 1; object-fit: cover; border-radius: 12px; margin: 20px 0 8px; background: var(--wash); }
-    .caption { color: var(--muted); font-size: .82rem; }
-    .cards { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px; margin-top: 24px; }
-    .card { border: 1px solid var(--line); border-radius: 12px; padding: 20px; background: #fff; }
-    .card h3 { margin: 0 0 7px; }
-    .card p { color: var(--muted); font-size: .93rem; margin-bottom: 12px; }
-    .pill { display: inline-block; background: var(--accent-soft); color: var(--accent); border-radius: 5px; padding: 3px 8px; font-size: .76rem; margin: 3px 4px 0 0; }
-    .item { padding: 18px 0; border-bottom: 1px solid var(--line); }
-    .item:first-of-type { padding-top: 8px; }
-    .item h3 { margin: 0 0 4px; }
-    .meta { color: var(--muted); font-size: .86rem; margin-bottom: 7px; }
-    .visual-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 14px; margin-top: 20px; }
-    .visual-grid figure { margin: 0; }
-    .visual-grid img { display: block; width: 100%; aspect-ratio: 4/3; object-fit: cover; border-radius: 10px; background: var(--wash); }
-    figure figcaption { color: var(--muted); font-size: .84rem; padding-top: 8px; }
-    .contact-links { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 20px; }
-    .contact-links a { display: inline-block; border: 1px solid var(--line); border-radius: 8px; padding: 8px 12px; text-decoration: none; font-size: .9rem; }
-    footer { border-top: 1px solid var(--line); padding: 20px 0 30px; color: var(--muted); font-size: .82rem; display: flex; justify-content: space-between; gap: 12px; }
+
+    .tab:hover {
+      color: var(--ink);
+    }
+
+    .tab[aria-selected="true"] {
+      color: var(--accent);
+      border-bottom-color: var(--accent);
+      font-weight: 600;
+    }
+
+    main {
+      min-height: 60vh;
+      padding: 46px 0 76px;
+    }
+
+    .panel {
+      animation: appear .18s ease-out;
+    }
+
+    .panel[hidden] {
+      display: none;
+    }
+
+    @keyframes appear {
+      from {
+        opacity: .35;
+        transform: translateY(3px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    h2 {
+      margin: 0 0 20px;
+      font-size: clamp(1.9rem, 4vw, 2.7rem);
+      line-height: 1.2;
+      letter-spacing: -.055em;
+    }
+
+    h3 {
+      margin: 28px 0 8px;
+      font-size: 1.2rem;
+      letter-spacing: -.02em;
+    }
+
+    p {
+      margin: 0 0 18px;
+    }
+
+    .lead {
+      max-width: 720px;
+      color: #554d60;
+      font-size: 1.08rem;
+    }
+
+    .eyebrow {
+      color: var(--accent);
+      font-size: .76rem;
+      text-transform: uppercase;
+      letter-spacing: .12em;
+      font-weight: 700;
+      margin-bottom: 10px;
+    }
+
+    .hero-image {
+      display: block;
+      width: 100%;
+      aspect-ratio: 2.2 / 1;
+      object-fit: cover;
+      object-position: center;
+      border-radius: 14px;
+      margin: 28px 0 12px;
+      background: var(--wash);
+    }
+
+    .caption {
+      color: var(--muted);
+      font-size: .84rem;
+    }
+
+    .text-block {
+      margin-top: 30px;
+      padding: 24px;
+      background: var(--wash);
+      border: 1px solid var(--line);
+      border-radius: 12px;
+    }
+
+    .text-block h3 {
+      margin-top: 0;
+    }
+
+    .text-block p:last-child {
+      margin-bottom: 0;
+    }
+
+    .person {
+      padding: 24px 0;
+      border-bottom: 1px solid var(--line);
+    }
+
+    .person:first-of-type {
+      padding-top: 8px;
+    }
+
+    .person h3 {
+      margin: 0 0 10px;
+    }
+
+    .contact-email {
+      display: inline-block;
+      margin-top: 4px;
+    }
+
+    footer {
+      border-top: 1px solid var(--line);
+      padding: 20px 0 30px;
+      color: var(--muted);
+      font-size: .82rem;
+      display: flex;
+      justify-content: space-between;
+      gap: 12px;
+    }
+
     @media (max-width: 580px) {
-      .shell { width: min(100% - 30px, var(--width)); }
-      header { padding-top: 23px; }
-      nav { gap: 21px; margin-top: 23px; }
-      main { padding-top: 32px; }
-      .cards, .visual-grid { grid-template-columns: 1fr; }
-      .hero-image { aspect-ratio: 1.45 / 1; }
-      footer { flex-direction: column; gap: 3px; }
+      .shell {
+        width: min(100% - 30px, var(--width));
+      }
+
+      header {
+        padding-top: 23px;
+      }
+
+      .logo {
+        width: 50px;
+        height: 50px;
+      }
+
+      .identity {
+        gap: 12px;
+      }
+
+      nav {
+        gap: 23px;
+        margin-top: 23px;
+      }
+
+      main {
+        padding-top: 34px;
+      }
+
+      .hero-image {
+        aspect-ratio: 1.4 / 1;
+      }
+
+      .text-block {
+        padding: 19px;
+      }
+
+      footer {
+        flex-direction: column;
+        gap: 3px;
+      }
     }
+
     @media (prefers-reduced-motion: reduce) {
-      *, *::before, *::after { scroll-behavior: auto !important; animation-duration: .01ms !important; }
+      *,
+      *::before,
+      *::after {
+        scroll-behavior: auto !important;
+        animation-duration: .01ms !important;
+      }
     }
   </style>
 </head>
+
 <body>
   <div class="shell">
+
     <header>
       <div class="identity">
-        <div class="mark" aria-hidden="true">YN</div>
+        <img
+          class="logo"
+          src="images/logo.png"
+          alt="Logotipo de El Camino de los 22 Arcanos"
+        >
+
         <div>
-          <h1>Your Name</h1>
-          <p class="tagline">Research · Data · Ideas</p>
+          <h1>El Camino de los 22 Arcanos</h1>
+          <p class="tagline">
+            Un viaje de introspección y armonización
+          </p>
         </div>
       </div>
-      <nav role="tablist" aria-label="Main navigation">
-        <button class="tab" id="tab-about" role="tab" aria-controls="about" aria-selected="true">About</button>
-        <button class="tab" id="tab-research" role="tab" aria-controls="research" aria-selected="false" tabindex="-1">Research</button>
-        <button class="tab" id="tab-projects" role="tab" aria-controls="projects" aria-selected="false" tabindex="-1">Projects</button>
-        <button class="tab" id="tab-visuals" role="tab" aria-controls="visuals" aria-selected="false" tabindex="-1">Visuals</button>
-        <button class="tab" id="tab-contact" role="tab" aria-controls="contact" aria-selected="false" tabindex="-1">Contact</button>
+
+      <nav role="tablist" aria-label="Navegación principal">
+        <button
+          class="tab"
+          id="tab-bienvenidx"
+          role="tab"
+          aria-controls="bienvenidx"
+          aria-selected="true"
+        >
+          Bienvenidx
+        </button>
+
+        <button
+          class="tab"
+          id="tab-tarot"
+          role="tab"
+          aria-controls="tarot"
+          aria-selected="false"
+          tabindex="-1"
+        >
+          El Tarot
+        </button>
+
+        <button
+          class="tab"
+          id="tab-contacto"
+          role="tab"
+          aria-controls="contacto"
+          aria-selected="false"
+          tabindex="-1"
+        >
+          Contacto
+        </button>
       </nav>
     </header>
 
     <main>
-      <section class="panel" id="about" role="tabpanel" aria-labelledby="tab-about">
-        <p class="eyebrow">Welcome</p>
-        <h2>Hello, world.</h2>
-        <p class="lead">I’m Your Name. I work on [your area of interest], using research and data to understand interesting problems.</p>
-        <p>This is my little corner of the internet. Here you can find a bit about me, my research, selected projects, and visual experiments. Replace this text with a short introduction in your own voice.</p>
-        <img class="hero-image" src="https://images.unsplash.com/photo-1487958449943-2429e8be8625?auto=format&fit=crop&w=1500&q=80" alt="Minimal modern architecture in soft natural light">
-        <p class="caption">A visual detail that sets the tone. Replace this image with your own if you prefer.</p>
+
+      <!-- BIENVENIDX -->
+
+      <section
+        class="panel"
+        id="bienvenidx"
+        role="tabpanel"
+        aria-labelledby="tab-bienvenidx"
+      >
+        <p class="eyebrow">Nuestra escuela</p>
+
+        <h2>Bienvenidx a nuestro espacio</h2>
+
+        <p class="lead">
+          Bienvenidx a nuestra escuela de tarot, un espacio
+          de encuentro, aprendizaje e introspección en el que
+          exploramos el lenguaje simbólico de los arcanos y
+          sus posibilidades para el autoconocimiento.
+        </p>
+
+        <p>
+          Realizamos diferentes actividades en torno al tarot.
+          La principal es <strong>El Camino de los 22 Arcanos</strong>,
+          una propuesta de exploración personal a través de los
+          arcanos mayores. También nos encontramos para compartir
+          tiradas de cartas, intercambiar experiencias y profundizar
+          conjuntamente en la práctica del tarot.
+        </p>
+
+        <p>
+          Además, organizamos talleres avanzados para quienes
+          desean seguir aprendiendo, ampliar su mirada y explorar
+          nuevas dimensiones del lenguaje simbólico.
+        </p>
+
+        <img
+          class="hero-image"
+          src="images/imagen_1.jpg"
+          alt="Imagen de El Camino de los 22 Arcanos"
+        >
+
+        <p class="caption">
+          Un espacio para aprender, compartir y recorrer
+          el camino de los arcanos.
+        </p>
       </section>
 
-      <section class="panel" id="research" role="tabpanel" aria-labelledby="tab-research" hidden>
-        <p class="eyebrow">What I work on</p>
-        <h2>Research</h2>
-        <p class="lead">A short overview of your research interests, questions, and methods.</p>
-        <div class="item">
-          <h3><a href="#">Project or paper title</a></h3>
-          <p class="meta">2025–present · Topic / collaborator</p>
-          <p>Two or three sentences explaining the question, why it matters, and what you contribute.</p>
-          <span class="pill">Methods</span><span class="pill">Data</span>
+
+      <!-- EL TAROT -->
+
+      <section
+        class="panel"
+        id="tarot"
+        role="tabpanel"
+        aria-labelledby="tab-tarot"
+        hidden
+      >
+        <p class="eyebrow">Símbolos y autoconocimiento</p>
+
+        <h2>El Tarot</h2>
+
+        <div class="text-block">
+          <h3>Un breve recorrido por su historia</h3>
+
+          <p>
+            El tarot tiene sus raíces en los juegos de cartas
+            que se difundieron por Europa durante el siglo XV.
+            Con el paso de los siglos, las imágenes de sus cartas
+            fueron adquiriendo nuevos significados simbólicos
+            y se incorporaron a distintas tradiciones de
+            interpretación y reflexión. Hoy, el tarot puede
+            abordarse desde múltiples perspectivas: histórica,
+            artística, simbólica y espiritual.
+          </p>
         </div>
-        <div class="item">
-          <h3><a href="#">Another research project</a></h3>
-          <p class="meta">2023–2025 · Topic / institution</p>
-          <p>Add a short description and link to a paper, preprint, dataset, or project page.</p>
-          <span class="pill">Publication</span>
+
+        <div class="text-block">
+          <h3>Nuestra visión del tarot</h3>
+
+          <p>
+            Entendemos el tarot desde una perspectiva humanista
+            y evolutiva. Para nosotrxs, sus imágenes y símbolos
+            son una invitación a observar nuestra experiencia,
+            reconocer patrones, explorar preguntas y abrir
+            nuevas posibilidades de comprensión. No se trata
+            de fijar un destino inamovible, sino de favorecer
+            una relación más consciente con nuestra historia,
+            nuestras decisiones y nuestro potencial de cambio.
+          </p>
+
+          <p>
+            A través del diálogo con los arcanos, buscamos
+            acompañar procesos de reflexión y crecimiento
+            personal, respetando la libertad, la singularidad
+            y el recorrido de cada persona.
+          </p>
         </div>
       </section>
 
-      <section class="panel" id="projects" role="tabpanel" aria-labelledby="tab-projects" hidden>
-        <p class="eyebrow">Selected work</p>
-        <h2>Projects</h2>
-        <p class="lead">A few things I’ve built, explored, or enjoyed working on.</p>
-        <div class="cards">
-          <article class="card">
-            <h3><a href="#">Project Alpha</a></h3>
-            <p>A concise description of the project, the problem it solves, and what makes it useful.</p>
-            <span class="pill">R</span><span class="pill">Data viz</span>
-          </article>
-          <article class="card">
-            <h3><a href="#">Project Beta</a></h3>
-            <p>A second project. Link to a GitHub repository, a demo, or a write-up.</p>
-            <span class="pill">Python</span><span class="pill">Web</span>
-          </article>
+
+      <!-- CONTACTO -->
+
+      <section
+        class="panel"
+        id="contacto"
+        role="tabpanel"
+        aria-labelledby="tab-contacto"
+        hidden
+      >
+        <p class="eyebrow">Estamos en contacto</p>
+
+        <h2>Contacto</h2>
+
+        <p class="lead">
+          ¿Quieres conocer nuestra escuela, participar en
+          alguna actividad o saber más sobre El Camino de
+          los 22 Arcanos? Puedes ponerte en contacto con nosotrxs.
+        </p>
+
+        <div class="person">
+          <h3>Persona 1</h3>
+
+          <p>
+            [Añadir aquí una presentación de la primera persona:
+            su recorrido, su relación con el tarot, su papel
+            en la escuela y las actividades que facilita.]
+          </p>
+
+          <a class="contact-email" href="mailto:persona1@ejemplo.com">
+            Contactar con Persona 1 ↗
+          </a>
+        </div>
+
+        <div class="person">
+          <h3>Persona 2</h3>
+
+          <p>
+            [Añadir aquí una presentación de la segunda persona:
+            su recorrido, sus intereses, su visión del tarot
+            y su contribución al proyecto.]
+          </p>
+
+          <a class="contact-email" href="mailto:persona2@ejemplo.com">
+            Contactar con Persona 2 ↗
+          </a>
         </div>
       </section>
 
-      <section class="panel" id="visuals" role="tabpanel" aria-labelledby="tab-visuals" hidden>
-        <p class="eyebrow">Charts, images & experiments</p>
-        <h2>Visuals</h2>
-        <p class="lead">Use this space for images, charts, maps, or small interactive demos.</p>
-        <div class="visual-grid">
-          <figure>
-            <img src="https://images.unsplash.com/photo-1518005020951-eccb494ad742?auto=format&fit=crop&w=900&q=80" alt="Geometric architecture">
-            <figcaption>Figure 1. Architecture and geometry.</figcaption>
-          </figure>
-          <figure>
-            <img src="https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?auto=format&fit=crop&w=900&q=80" alt="Mountain landscape">
-            <figcaption>Figure 2. A landscape or project image.</figcaption>
-          </figure>
-        </div>
-        <h3>Embed a chart or app</h3>
-        <p>You can also embed a published Observable notebook, a Flourish chart, or an app hosted elsewhere. For example, an iframe can go here once you have a public embed URL.</p>
-      </section>
-
-      <section class="panel" id="contact" role="tabpanel" aria-labelledby="tab-contact" hidden>
-        <p class="eyebrow">Say hello</p>
-        <h2>Contact</h2>
-        <p class="lead">The easiest way to reach me is by email. You can also find me around the web.</p>
-        <div class="contact-links">
-          <a href="mailto:you@example.com">Email ↗</a>
-          <a href="https://github.com/">GitHub ↗</a>
-          <a href="https://www.linkedin.com/">LinkedIn ↗</a>
-        </div>
-      </section>
     </main>
+
     <footer>
-      <span>© <span id="year"></span> Your Name</span>
-      <span>Built with HTML & CSS · Hosted on GitHub Pages</span>
+      <span>
+        © <span id="year"></span> El Camino de los 22 Arcanos
+      </span>
+
+      <span>Un viaje de introspección y armonización</span>
     </footer>
+
   </div>
+
   <script>
-    const tabs = [...document.querySelectorAll('[role="tab"]')];
-    const panels = [...document.querySelectorAll('[role="tabpanel"]')];
+    const tabs = [
+      ...document.querySelectorAll('[role="tab"]')
+    ];
+
+    const panels = [
+      ...document.querySelectorAll('[role="tabpanel"]')
+    ];
 
     function activateTab(tab, updateHash = true) {
       tabs.forEach((item) => {
         const selected = item === tab;
-        item.setAttribute('aria-selected', String(selected));
+
+        item.setAttribute(
+          'aria-selected',
+          String(selected)
+        );
+
         item.tabIndex = selected ? 0 : -1;
       });
+
       panels.forEach((panel) => {
-        panel.hidden = panel.id !== tab.getAttribute('aria-controls');
+        panel.hidden =
+          panel.id !== tab.getAttribute('aria-controls');
       });
-      if (updateHash) history.replaceState(null, '', '#' + tab.getAttribute('aria-controls'));
+
+      if (updateHash) {
+        history.replaceState(
+          null,
+          '',
+          '#' + tab.getAttribute('aria-controls')
+        );
+      }
     }
 
     tabs.forEach((tab, index) => {
-      tab.addEventListener('click', () => activateTab(tab));
+      tab.addEventListener('click', () => {
+        activateTab(tab);
+      });
+
       tab.addEventListener('keydown', (event) => {
         let next = index;
-        if (event.key === 'ArrowRight') next = (index + 1) % tabs.length;
-        else if (event.key === 'ArrowLeft') next = (index - 1 + tabs.length) % tabs.length;
-        else if (event.key === 'Home') next = 0;
-        else if (event.key === 'End') next = tabs.length - 1;
-        else return;
+
+        if (event.key === 'ArrowRight') {
+          next = (index + 1) % tabs.length;
+        } else if (event.key === 'ArrowLeft') {
+          next = (index - 1 + tabs.length) % tabs.length;
+        } else if (event.key === 'Home') {
+          next = 0;
+        } else if (event.key === 'End') {
+          next = tabs.length - 1;
+        } else {
+          return;
+        }
+
         event.preventDefault();
         tabs[next].focus();
         activateTab(tabs[next]);
@@ -221,9 +562,17 @@
     });
 
     const initialId = location.hash.slice(1);
-    const initialTab = tabs.find((tab) => tab.getAttribute('aria-controls') === initialId);
-    if (initialTab) activateTab(initialTab, false);
-    document.getElementById('year').textContent = new Date().getFullYear();
+
+    const initialTab = tabs.find((tab) => {
+      return tab.getAttribute('aria-controls') === initialId;
+    });
+
+    if (initialTab) {
+      activateTab(initialTab, false);
+    }
+
+    document.getElementById('year').textContent =
+      new Date().getFullYear();
   </script>
 </body>
 </html>
