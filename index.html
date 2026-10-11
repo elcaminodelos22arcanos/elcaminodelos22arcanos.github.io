@@ -5,21 +5,54 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
-  <meta name="description" content="El Camino de los 22 Arcanos. Escuela de tarot, introspección y evolución personal.">
+  <meta
+    name="description"
+    content="El Camino de los 22 Arcanos. Escuela de tarot, introspección y evolución personal."
+  >
 
   <title>El Camino de los 22 Arcanos</title>
 
   <style>
-    :root {
-      --ink: #30283b;
-      --muted: #777080;
-      --line: #e8e1eb;
-      --paper: #fffdfd;
-      --wash: #f8f3f8;
-      --accent: #79558c;
-      --accent-soft: #f1e9f5;
-      --width: 900px;
+    /* ========================================
+       FUENTES LOCALES
+       ======================================== */
+
+    @font-face {
+      font-family: "Attena";
+      src: url("fonts/Attena.ttf") format("truetype");
+      font-weight: normal;
+      font-style: normal;
+      font-display: swap;
     }
+
+    @font-face {
+      font-family: "Kumbh Sans";
+      src: url("fonts/KumbhSans.ttf") format("truetype");
+      font-weight: 100 900;
+      font-style: normal;
+      font-display: swap;
+    }
+
+    /* ========================================
+       COLORES Y VARIABLES
+       ======================================== */
+
+    :root {
+      --ink: #202a36;
+      --muted: #687586;
+      --line: #e4e8ed;
+      --paper: #ffffff;
+      --wash: #f6f8fa;
+
+      --accent: #002238;
+      --accent-2: #760113;
+
+      --width: 960px;
+    }
+
+    /* ========================================
+       ESTILOS GENERALES
+       ======================================== */
 
     * {
       box-sizing: border-box;
@@ -33,24 +66,30 @@
       margin: 0;
       background: var(--paper);
       color: var(--ink);
-      font: 16px/1.8 Inter, -apple-system,
-        BlinkMacSystemFont, "Segoe UI", sans-serif;
+      font-family: "Kumbh Sans", sans-serif;
+      font-size: 16px;
+      line-height: 1.8;
       -webkit-font-smoothing: antialiased;
     }
 
     a {
       color: var(--accent);
+      text-decoration-thickness: 1px;
       text-underline-offset: 3px;
     }
 
     a:hover {
-      color: #513762;
+      color: var(--accent-2);
     }
 
     .shell {
       width: min(var(--width), calc(100% - 44px));
       margin: 0 auto;
     }
+
+    /* ========================================
+       CABECERA Y LOGOTIPO
+       ======================================== */
 
     header {
       padding-top: 34px;
@@ -65,23 +104,32 @@
     .logo {
       width: 62px;
       height: 62px;
-      border-radius: 14px;
       object-fit: contain;
       flex: 0 0 auto;
     }
 
+    h1,
+    h2,
+    h3 {
+      font-family: "Attena", "Kumbh Sans", sans-serif;
+      font-weight: normal;
+    }
+
     h1 {
       margin: 0;
-      font-size: clamp(1.25rem, 3vw, 1.7rem);
-      letter-spacing: -.045em;
+      font-size: clamp(1.25rem, 2.5vw, 1.55rem);
       line-height: 1.3;
     }
 
     .tagline {
       margin: 5px 0 0;
       color: var(--muted);
-      font-size: .92rem;
+      font-size: .9rem;
     }
+
+    /* ========================================
+       NAVEGACIÓN ENTRE PESTAÑAS
+       ======================================== */
 
     nav {
       display: flex;
@@ -89,7 +137,16 @@
       overflow-x: auto;
       margin-top: 28px;
       border-bottom: 1px solid var(--line);
-      scrollbar-width: thin;
+
+      /* Ocultar la barra de desplazamiento */
+      scrollbar-width: none;
+      -ms-overflow-style: none;
+    }
+
+    nav::-webkit-scrollbar {
+      display: none;
+      width: 0;
+      height: 0;
     }
 
     .tab {
@@ -99,26 +156,38 @@
       background: transparent;
       color: var(--muted);
       cursor: pointer;
-      font: inherit;
-      font-size: .96rem;
+      font-family: "Kumbh Sans", sans-serif;
+      font-size: .94rem;
       white-space: nowrap;
-      padding: 0 0 13px;
+      padding: 0 0 12px;
       margin-bottom: -1px;
+      transition: color .2s ease, border-color .2s ease;
     }
 
     .tab:hover {
-      color: var(--ink);
+      color: var(--accent);
     }
 
+    /* Pestaña activa en burdeos */
+
     .tab[aria-selected="true"] {
-      color: var(--accent);
-      border-bottom-color: var(--accent);
+      color: var(--accent-2);
+      border-bottom-color: var(--accent-2);
       font-weight: 600;
     }
 
+    .tab:focus-visible {
+      outline: 2px solid var(--accent);
+      outline-offset: 4px;
+    }
+
+    /* ========================================
+       CONTENIDO PRINCIPAL
+       ======================================== */
+
     main {
       min-height: 60vh;
-      padding: 46px 0 76px;
+      padding: 42px 0 76px;
     }
 
     .panel {
@@ -143,15 +212,15 @@
 
     h2 {
       margin: 0 0 20px;
-      font-size: clamp(1.9rem, 4vw, 2.7rem);
-      line-height: 1.2;
-      letter-spacing: -.055em;
+      font-size: clamp(1.65rem, 3vw, 2.05rem);
+      line-height: 1.3;
+      letter-spacing: -.025em;
     }
 
     h3 {
-      margin: 28px 0 8px;
+      margin: 24px 0 8px;
       font-size: 1.2rem;
-      letter-spacing: -.02em;
+      line-height: 1.4;
     }
 
     p {
@@ -159,59 +228,74 @@
     }
 
     .lead {
-      max-width: 720px;
-      color: #554d60;
-      font-size: 1.08rem;
+      color: #495667;
+      font-size: 1.04rem;
+      max-width: 620px;
     }
 
-    .eyebrow {
-      color: var(--accent);
-      font-size: .76rem;
-      text-transform: uppercase;
-      letter-spacing: .12em;
-      font-weight: 700;
-      margin-bottom: 10px;
+    /* ========================================
+       PESTAÑA 1: BIENVENIDX
+       Texto a la izquierda e imagen a la derecha
+       ======================================== */
+
+    .welcome-layout {
+      display: grid;
+      grid-template-columns: minmax(0, 1.2fr) minmax(240px, .8fr);
+      align-items: start;
+      gap: 34px;
+    }
+
+    .welcome-copy {
+      min-width: 0;
+    }
+
+    .welcome-image {
+      position: sticky;
+      top: 24px;
     }
 
     .hero-image {
       display: block;
       width: 100%;
-      aspect-ratio: 2.2 / 1;
+      aspect-ratio: 3 / 4;
       object-fit: cover;
       object-position: center;
-      border-radius: 14px;
-      margin: 28px 0 12px;
+      border-radius: 4px;
       background: var(--wash);
     }
 
     .caption {
       color: var(--muted);
-      font-size: .84rem;
+      font-size: .82rem;
+      margin-top: 10px;
     }
 
-    .text-block {
+    /* ========================================
+       PESTAÑA 2: EL TAROT
+       Texto sin recuadros
+       ======================================== */
+
+    .tarot-copy {
+      max-width: 760px;
+    }
+
+    .tarot-copy h3 {
       margin-top: 30px;
-      padding: 24px;
-      background: var(--wash);
-      border: 1px solid var(--line);
-      border-radius: 12px;
+      margin-bottom: 10px;
     }
 
-    .text-block h3 {
+    .tarot-copy h3:first-child {
       margin-top: 0;
     }
 
-    .text-block p:last-child {
-      margin-bottom: 0;
-    }
+    /* ========================================
+       PESTAÑA 3: CONTACTO
+       Texto sin tarjetas
+       ======================================== */
 
     .person {
-      padding: 24px 0;
-      border-bottom: 1px solid var(--line);
-    }
-
-    .person:first-of-type {
-      padding-top: 8px;
+      max-width: 760px;
+      margin-top: 32px;
     }
 
     .person h3 {
@@ -220,20 +304,25 @@
 
     .contact-email {
       display: inline-block;
-      margin-top: 4px;
+      margin-top: 0;
     }
+
+    /* ========================================
+       PIE DE PÁGINA
+       ======================================== */
 
     footer {
       border-top: 1px solid var(--line);
       padding: 20px 0 30px;
       color: var(--muted);
       font-size: .82rem;
-      display: flex;
-      justify-content: space-between;
-      gap: 12px;
     }
 
-    @media (max-width: 580px) {
+    /* ========================================
+       DISEÑO ADAPTABLE A MÓVILES
+       ======================================== */
+
+    @media (max-width: 650px) {
       .shell {
         width: min(100% - 30px, var(--width));
       }
@@ -252,27 +341,29 @@
       }
 
       nav {
-        gap: 23px;
+        gap: 24px;
         margin-top: 23px;
       }
 
       main {
-        padding-top: 34px;
+        padding-top: 32px;
+      }
+
+      .welcome-layout {
+        grid-template-columns: 1fr;
+        gap: 22px;
+      }
+
+      .welcome-image {
+        position: static;
       }
 
       .hero-image {
-        aspect-ratio: 1.4 / 1;
-      }
-
-      .text-block {
-        padding: 19px;
-      }
-
-      footer {
-        flex-direction: column;
-        gap: 3px;
+        aspect-ratio: 4 / 3;
       }
     }
+
+    /* Respetar la preferencia de movimiento reducido */
 
     @media (prefers-reduced-motion: reduce) {
       *,
@@ -280,6 +371,7 @@
       *::after {
         scroll-behavior: auto !important;
         animation-duration: .01ms !important;
+        transition-duration: .01ms !important;
       }
     }
   </style>
@@ -288,23 +380,31 @@
 <body>
   <div class="shell">
 
+    <!-- CABECERA -->
+
     <header>
       <div class="identity">
+
         <img
           class="logo"
-          src="images/logo.png"
+          src="images/logo.jpg"
           alt="Logotipo de El Camino de los 22 Arcanos"
         >
 
         <div>
           <h1>El Camino de los 22 Arcanos</h1>
+
           <p class="tagline">
             Un viaje de introspección y armonización
           </p>
         </div>
+
       </div>
 
+      <!-- NAVEGACIÓN -->
+
       <nav role="tablist" aria-label="Navegación principal">
+
         <button
           class="tab"
           id="tab-bienvenidx"
@@ -336,12 +436,15 @@
         >
           Contacto
         </button>
+
       </nav>
     </header>
 
+    <!-- CONTENIDO -->
+
     <main>
 
-      <!-- BIENVENIDX -->
+      <!-- PESTAÑA 1: BIENVENIDX -->
 
       <section
         class="panel"
@@ -349,46 +452,58 @@
         role="tabpanel"
         aria-labelledby="tab-bienvenidx"
       >
-        <p class="eyebrow">Nuestra escuela</p>
 
-        <h2>Bienvenidx a nuestro espacio</h2>
+        <div class="welcome-layout">
 
-        <p class="lead">
-          Bienvenidx a nuestra escuela de tarot, un espacio
-          de encuentro, aprendizaje e introspección en el que
-          exploramos el lenguaje simbólico de los arcanos y
-          sus posibilidades para el autoconocimiento.
-        </p>
+          <div class="welcome-copy">
 
-        <p>
-          Realizamos diferentes actividades en torno al tarot.
-          La principal es <strong>El Camino de los 22 Arcanos</strong>,
-          una propuesta de exploración personal a través de los
-          arcanos mayores. También nos encontramos para compartir
-          tiradas de cartas, intercambiar experiencias y profundizar
-          conjuntamente en la práctica del tarot.
-        </p>
+            <h2>Bienvenidx a nuestro espacio</h2>
 
-        <p>
-          Además, organizamos talleres avanzados para quienes
-          desean seguir aprendiendo, ampliar su mirada y explorar
-          nuevas dimensiones del lenguaje simbólico.
-        </p>
+            <p class="lead">
+              Bienvenidx a nuestra escuela de tarot, un espacio
+              de encuentro, aprendizaje e introspección en el que
+              exploramos el lenguaje simbólico de los arcanos y
+              sus posibilidades para el autoconocimiento.
+            </p>
 
-        <img
-          class="hero-image"
-          src="images/imagen_1.jpg"
-          alt="Imagen de El Camino de los 22 Arcanos"
-        >
+            <p>
+              Realizamos diferentes actividades en torno al tarot.
+              La principal es
+              <strong>El Camino de los 22 Arcanos</strong>,
+              una propuesta de exploración personal a través de
+              los arcanos mayores. También nos encontramos para
+              compartir tiradas, intercambiar experiencias y
+              profundizar conjuntamente en la práctica del tarot.
+            </p>
 
-        <p class="caption">
-          Un espacio para aprender, compartir y recorrer
-          el camino de los arcanos.
-        </p>
+            <p>
+              Además, organizamos talleres avanzados para quienes
+              desean seguir aprendiendo, ampliar su mirada y
+              explorar nuevas dimensiones del lenguaje simbólico.
+            </p>
+
+          </div>
+
+          <div class="welcome-image">
+
+            <img
+              class="hero-image"
+              src="images/imagen_1.jpg"
+              alt="Imagen de El Camino de los 22 Arcanos"
+            >
+
+            <p class="caption">
+              Un espacio para aprender, compartir y recorrer
+              el camino de los arcanos.
+            </p>
+
+          </div>
+
+        </div>
+
       </section>
 
-
-      <!-- EL TAROT -->
+      <!-- PESTAÑA 2: EL TAROT -->
 
       <section
         class="panel"
@@ -397,11 +512,11 @@
         aria-labelledby="tab-tarot"
         hidden
       >
-        <p class="eyebrow">Símbolos y autoconocimiento</p>
 
         <h2>El Tarot</h2>
 
-        <div class="text-block">
+        <div class="tarot-copy">
+
           <h3>Un breve recorrido por su historia</h3>
 
           <p>
@@ -414,9 +529,7 @@
             abordarse desde múltiples perspectivas: histórica,
             artística, simbólica y espiritual.
           </p>
-        </div>
 
-        <div class="text-block">
           <h3>Nuestra visión del tarot</h3>
 
           <p>
@@ -436,11 +549,12 @@
             personal, respetando la libertad, la singularidad
             y el recorrido de cada persona.
           </p>
+
         </div>
+
       </section>
 
-
-      <!-- CONTACTO -->
+      <!-- PESTAÑA 3: CONTACTO -->
 
       <section
         class="panel"
@@ -449,7 +563,6 @@
         aria-labelledby="tab-contacto"
         hidden
       >
-        <p class="eyebrow">Estamos en contacto</p>
 
         <h2>Contacto</h2>
 
@@ -460,6 +573,7 @@
         </p>
 
         <div class="person">
+
           <h3>Persona 1</h3>
 
           <p>
@@ -468,12 +582,17 @@
             en la escuela y las actividades que facilita.]
           </p>
 
-          <a class="contact-email" href="mailto:persona1@ejemplo.com">
+          <a
+            class="contact-email"
+            href="mailto:persona1@ejemplo.com"
+          >
             Contactar con Persona 1 ↗
           </a>
+
         </div>
 
         <div class="person">
+
           <h3>Persona 2</h3>
 
           <p>
@@ -482,23 +601,30 @@
             y su contribución al proyecto.]
           </p>
 
-          <a class="contact-email" href="mailto:persona2@ejemplo.com">
+          <a
+            class="contact-email"
+            href="mailto:persona2@ejemplo.com"
+          >
             Contactar con Persona 2 ↗
           </a>
+
         </div>
+
       </section>
 
     </main>
+
+    <!-- FOOTER -->
 
     <footer>
       <span>
         © <span id="year"></span> El Camino de los 22 Arcanos
       </span>
-
-      <span>Un viaje de introspección y armonización</span>
     </footer>
 
   </div>
+
+  <!-- FUNCIONALIDAD DE LAS PESTAÑAS -->
 
   <script>
     const tabs = [
@@ -556,10 +682,13 @@
         }
 
         event.preventDefault();
+
         tabs[next].focus();
         activateTab(tabs[next]);
       });
     });
+
+    /* Abrir directamente la pestaña indicada en la URL */
 
     const initialId = location.hash.slice(1);
 
@@ -571,8 +700,11 @@
       activateTab(initialTab, false);
     }
 
+    /* Año automático en el pie de página */
+
     document.getElementById('year').textContent =
       new Date().getFullYear();
   </script>
+
 </body>
 </html>
