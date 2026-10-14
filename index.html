@@ -138,7 +138,6 @@
       margin-top: 28px;
       border-bottom: 1px solid var(--line);
 
-      /* Ocultar la barra de desplazamiento */
       scrollbar-width: none;
       -ms-overflow-style: none;
     }
@@ -167,8 +166,6 @@
     .tab:hover {
       color: var(--accent);
     }
-
-    /* Pestaña activa en burdeos */
 
     .tab[aria-selected="true"] {
       color: var(--accent-2);
@@ -235,7 +232,6 @@
 
     /* ========================================
        PESTAÑA 1: BIENVENIDX
-       Texto a la izquierda e imagen a la derecha
        ======================================== */
 
     .welcome-layout {
@@ -272,7 +268,6 @@
 
     /* ========================================
        PESTAÑA 2: EL TAROT
-       Texto sin recuadros
        ======================================== */
 
     .tarot-copy {
@@ -288,23 +283,67 @@
       margin-top: 0;
     }
 
-    /* ========================================
-       PESTAÑA 3: CONTACTO
-       Texto sin tarjetas
-       ======================================== */
+
+/* ========================================
+   PESTAÑA 4: CONTACTO Y PERSONAS
+   ======================================== */
 
     .person {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) 220px;
+      grid-template-areas:
+        "title photo"
+        "copy  photo"
+        "link  photo";
+      column-gap: 32px;
+      align-items: start;
       max-width: 760px;
-      margin-top: 32px;
+      margin-top: 40px;
     }
 
     .person h3 {
+      grid-area: title;
       margin: 0 0 10px;
     }
 
-    .contact-email {
-      display: inline-block;
+    .person-copy {
+      grid-area: copy;
+      min-width: 0;
+    }
+
+    .person-photo {
+      grid-area: photo;
+      display: block;
+      width: 100%;
+      height: auto;
+      object-fit: cover;
+      border-radius: 4px;
+    }
+
+    .person .contact-email {
+      grid-area: link;
+      justify-self: start;
       margin-top: 0;
+    }
+
+    /* En móviles, la foto aparece antes del texto */
+
+    @media (max-width: 650px) {
+      .person {
+        grid-template-columns: minmax(0, 1fr);
+        grid-template-areas:
+          "photo"
+          "title"
+          "copy"
+          "link";
+        row-gap: 12px;
+      }
+
+      .person-photo {
+        width: 100%;
+        max-width: 360px;
+        margin-bottom: 8px;
+      }
     }
 
     /* ========================================
@@ -451,7 +490,7 @@
 
     <main>
 
-      <!-- PESTAÑA 1: BIENVENIDX -->
+      <!-- PESTAÑA 1: BIENVENIDA -->
 
       <section
         class="panel"
@@ -464,12 +503,12 @@
 
           <div class="welcome-copy">
 
-            <h2>Bienvenidx</h2>
+            <h2>Bienvenida</h2>
 
             <p>
-              Bienvenidx a nuestra escuela de Tarot, un espacio
-              de encuentro, aprendizaje e introspección. Exploramos el 
-              lenguaje simbólico de los arcanos y
+              Te damos la bienvenida a nuestra comunidad de tarot,
+              un espacio de encuentro, aprendizaje e introspección.
+              Exploramos el lenguaje simbólico de los arcanos y
               sus posibilidades para el autoconocimiento.
             </p>
 
@@ -514,31 +553,157 @@
         hidden
       >
 
-        <h2>El Tarot</h2>
+        <h2>El Camino</h2>
 
         <div class="tarot-copy">
 
-          <p>
-            El tarot tiene sus raíces en los juegos de cartas
-            que se difundieron por Europa durante el siglo XV.
-            Con el paso de los siglos, las imágenes de sus cartas
-            fueron adquiriendo nuevos significados simbólicos
-            y se incorporaron a distintas tradiciones de
-            interpretación y reflexión. Hoy, el tarot puede
-            abordarse desde múltiples perspectivas: histórica,
-            artística, simbólica y espiritual.
+          <p class="lead">
+            Un camino para armonizar tu energía.
           </p>
 
           <p>
-            Entendemos el tarot desde una perspectiva humanista
-            y evolutiva. Para nosotrxs, sus imágenes y símbolos
-            son una invitación a observar nuestra experiencia,
-            reconocer patrones, explorar preguntas y abrir
-            nuevas posibilidades de comprensión. No se trata
-            de fijar un destino inamovible, sino de favorecer
-            una relación más consciente con nuestra historia,
-            nuestras decisiones y nuestro potencial de cambio.
+            Este programa está diseñado para acompañarte en un
+            proceso de reorganización y armonización interior,
+            utilizando los Arcanos Mayores del Tarot como guía
+            simbólica y herramienta evolutiva de autoconocimiento.
           </p>
+
+          <p>
+            Cada arcano representa un arquetipo universal, un patrón
+            simbólico presente en el inconsciente colectivo. Estos
+            arquetipos reflejan dinámicas psicológicas fundamentales
+            que compartimos todos los seres humanos.
+          </p>
+
+          <p>
+            Al ser comprendidas y trabajadas conscientemente, estas
+            dinámicas nos permiten integrar aspectos de nosotras
+            mismas, restablecer el equilibrio interno y desbloquear
+            nuestro potencial.
+          </p>
+
+          <p>
+            Lejos del enfoque adivinatorio, el Tarot evolutivo
+            propone una mirada introspectiva, transformadora y
+            profundamente simbólica.
+          </p>
+
+          <p>
+            Durante el curso conectarás con estas fuerzas internas
+            para alinear tu mente, tus emociones y tu energía vital,
+            favoreciendo la claridad, la coherencia interna y el
+            crecimiento personal.
+          </p>
+
+          <h3>¿Qué incluye el curso?</h3>
+
+          <ul>
+            <li>
+              <strong>Duración:</strong> del 3 de noviembre al
+              3 de diciembre de 2026.
+            </li>
+            <li>
+              <strong>Modalidad:</strong> comunidad de WhatsApp
+              y encuentros online vía Zoom.
+            </li>
+            <li>
+              <strong>Contenido semanal:</strong> cada semana
+              recibirás el material de los arcanos correspondientes,
+              que incluirá una meditación, una lectura introductoria
+              y ejercicios prácticos o reflexivos para cada uno
+              de ellos.
+            </li>
+            <li>
+              <strong>Tutorías en directo:</strong> dos encuentros
+              grupales online vía Zoom.
+            </li>
+            <li>
+              <strong>Acompañamiento constante:</strong> un espacio
+              para compartir experiencias, resolver dudas y
+              profundizar en cada etapa del proceso.
+            </li>
+          </ul>
+
+          <h3>¿Qué necesitas?</h3>
+
+          <ul>
+            <li>
+              <strong>Tu propio Tarot:</strong> es aconsejable
+              disponer de una baraja. Si no tienes ninguna, no pasa
+              nada: recibirás las imágenes de cada arcano.
+              Te recomendamos el Tarot de Marsella, aunque
+              cualquiera es válido.
+            </li>
+            <li>22 velas pequeñas.</li>
+            <li>22 tarjetitas de cartulina.</li>
+            <li>
+              <strong>Para los encuentros por Zoom:</strong>
+              una tablet o un ordenador y conexión a internet.
+            </li>
+          </ul>
+
+          <h3>Fechas y horarios</h3>
+
+          <p>
+            <strong>Inicio:</strong> 3 de noviembre de 2026.
+          </p>
+
+          <p>
+            <strong>Fin:</strong> 3 de diciembre de 2026.
+          </p>
+
+          <p>
+            <strong>Fechas de los encuentros online:</strong>
+          </p>
+
+          <ul>
+            <li>Encuentro 1: fecha pendiente de confirmar.</li>
+            <li>Encuentro 2: fecha pendiente de confirmar.</li>
+          </ul>
+
+          <p>
+            <strong>Horario:</strong> de 18:00 a 19:30 h (CET).
+          </p>
+
+          <h3>Inversión</h3>
+
+          <p>
+            <strong>100 €</strong> por el curso.
+          </p>
+
+          <p>
+            <strong>50 €</strong> para quienes repiten la experiencia.
+          </p>
+
+          <p>
+            Si quieres recibir en casa el manual
+            <em>El Camino de los 22 Arcanos</em>, puedes añadirlo
+            por 20 €.
+          </p>
+
+          <h3>Algunas aclaraciones</h3>
+
+          <ul>
+            <li>
+              Cada semana recibirás la información y las reflexiones
+              que deberás realizar sobre los arcanos correspondientes.
+            </li>
+            <li>
+              Las reuniones online son complementarias y opcionales,
+              para quienes puedan y quieran compartir sus dudas.
+            </li>
+            <li>
+              Cualquier información adicional que se comparta
+              durante las reuniones online se hará llegar también
+              a través del grupo, para que nadie se pierda nada.
+            </li>
+            <li>El pago se realizará mediante transferencia bancaria.</li>
+            <li>
+              Al finalizar el curso, te enviaremos por correo
+              el libro del curso, con información adicional para
+              que puedas seguir explorando.
+            </li>
+          </ul>
 
         </div>
 
@@ -554,9 +719,20 @@
         hidden
       >
 
-        <h2>Nuestra visión</h2>
+        <h2>Nuestra visión del Tarot</h2>
 
         <div class="tarot-copy">
+
+          <p>
+            El tarot tiene sus raíces en los juegos de cartas
+            que se difundieron por Europa durante el siglo XV.
+            Con el paso de los siglos, las imágenes de sus cartas
+            fueron adquiriendo nuevos significados simbólicos
+            y se incorporaron a distintas tradiciones de
+            interpretación y reflexión. Hoy, el tarot puede
+            abordarse desde múltiples perspectivas: histórica,
+            artística, simbólica y espiritual.
+          </p>
 
           <p>
             Entendemos el tarot desde una perspectiva humanista
@@ -591,50 +767,63 @@
         hidden
       >
 
-        <h2>Contacto</h2>
+        <h2>Nosotras</h2>
 
         <p>
-          ¿Quieres conocer nuestra escuela, participar en
-          alguna actividad o saber más sobre El Camino de
-          los 22 Arcanos? Puedes ponerte en contacto con nosotras
-          escribiendo a elcaminodelos22arcanos@gmail.com
+          Si quieres saber más sobre nuestra comunidad, participar
+          en las actividades de la escuela, o ponerte en contacto
+          para cualquier otra cosa, puedes escribirnos a
+        </p>
+
+        <p>
+          elcaminodelos22arcanos@gmail.com
         </p>
 
         <div class="person">
 
-          <h3>Persona 1</h3>
+          <h3>Gloria González Urueña</h3>
 
-          <p>
-            [Añadir aquí una presentación de la primera persona:
-            su recorrido, su relación con el tarot, su papel
-            en la escuela y las actividades que facilita.]
-          </p>
-
-          <a
-            class="contact-email"
-            href="mailto:persona1@ejemplo.com"
+          <img
+            class="person-photo"
+            src="images/foto_g.jpg"
+            alt="Gloria"
+            loading="lazy"
           >
-            Contactar con Persona 1 ↗
-          </a>
+
+          <div class="person-copy">
+
+            <p>
+              ¡Hola! Me llamo Gloria y esta es mi razón para estar aquí.
+              
+              Me licencié como psicóloga por la UCM hace unos 25 años y, al comprobar que la psicología académica no alcanzaba a responder algunas de mis preguntas sobre la dimensión más esencial de las personas, el sufrimiento humano, el sentido de la vida y la conciencia, amplié mi formación hacia la terapia transpersonal, la psicología evolutiva y espiritual.
+              Mi profunda inquietud me ha llevado a recorrer ámbitos más académicos como la formación en EMDR, técnicas psicocorporales, meditación,…., a enfoques menos ortodoxos como la psicología esotérica
+              En mi trayectoria personal también me he acompañado de diferentes maestros y mentores espirituales, con los que en la actualidad tengo la suerte de contar en mi camino.
+              Acompaño procesos terapéuticos individuales y facilito grupos, talleres vivenciales, experiencias de meditación y retiros. Mi manera de trabajar integra las dimensiones psicológica, corporal y espiritual, atendiendo a las necesidades y al momento vital de cada persona. Reconozco la importancia de comprender la propia historia, acoger los miedos y sanar las heridas y patrones que condicionan la vida, pero sin perder de vista y poniendo gran énfasis en que la identidad no se agota en ese yo construido a partir de lo vivido.
+              En el Tarot encontré una herramienta de profundo conocimiento del ser humano en su transitar por la vida. A través de su lenguaje simbólico ayuda a comprender lo que estamos viviendo, amplia nuestra mirada e invita a participar de forma más consciente en nuestra propia evolución.
+              Y con el objetivo de ayudar a las personas a poder vivir con mayor libertad y conciencia, creé El camino de los 22 Arcanos. Lugar en el que ahora nos encontramos y al que te doy la bienvenida.
+            </p>
+
+          </div>
 
         </div>
 
+
         <div class="person">
 
-          <h3>Persona 2</h3>
+          <h3>David García García</h3>
+
+          <img
+            class="person-photo"
+            src="images/foto_d.jpg"
+            alt="David"
+            loading="lazy"
+          >
 
           <p>
             [Añadir aquí una presentación de la segunda persona:
             su recorrido, sus intereses, su visión del tarot
             y su contribución al proyecto.]
           </p>
-
-          <a
-            class="contact-email"
-            href="mailto:persona2@ejemplo.com"
-          >
-            Contactar con Persona 2 ↗
-          </a>
 
         </div>
 
