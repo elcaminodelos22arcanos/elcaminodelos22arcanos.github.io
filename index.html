@@ -452,17 +452,6 @@
 
         <button
           class="tab"
-          id="tab-tarot"
-          role="tab"
-          aria-controls="tarot"
-          aria-selected="false"
-          tabindex="-1"
-        >
-          El Camino
-        </button>
-
-        <button
-          class="tab"
           id="tab-vision"
           role="tab"
           aria-controls="vision"
@@ -470,6 +459,17 @@
           tabindex="-1"
         >
           Nuestra visión
+        </button>
+
+        <button
+          class="tab"
+          id="tab-tarot"
+          role="tab"
+          aria-controls="tarot"
+          aria-selected="false"
+          tabindex="-1"
+        >
+          El Camino
         </button>
 
         <button
@@ -513,14 +513,13 @@
               La principal es el curso introductorio
               <strong>El Camino de los 22 Arcanos</strong>,
               una propuesta de exploración personal a través de
-              los llamados arcanos mayores.
+              los arcanos mayores.
             </p> 
               
            <p> 
-              También nos encontramos online periódicamente para
-              compartir dinámicas basadas en el lenguaje simbólico
-              del tarot, y de vez en cuando organizamos talleres
-              tratando aspectos más avanzados.
+              También nos encontramos online para compartir dinámicas
+              basadas en los símbolos del tarot, y de vez en cuando
+              organizamos talleres tratando aspectos más avanzados.
             </p>
 
           </div>
@@ -552,19 +551,20 @@
         <div class="tarot-copy">
 
           <p>
-            El tarot tiene sus raíces en los juegos de cartas
+            El Tarot tiene sus raíces en los juegos de cartas
             que se difundieron por Europa durante el siglo XV.
             Con el paso de los siglos, las imágenes de sus cartas
             fueron adquiriendo nuevos significados simbólicos
             y se incorporaron a distintas tradiciones de
-            interpretación y reflexión. Hoy, el tarot puede
-            abordarse desde múltiples perspectivas: histórica,
+            interpretación y reflexión. Hoy en día, el Tarot se
+            trata desde muchas perspectivas: histórica,
             artística, simbólica, espiritual...
           </p>
 
           <p>
-            Entendemos el Tarot desde una perspectiva humanista
-            y evolutiva. Para nosotras, sus símbolos son
+            En El Camino de los 22 Arcanos entendemos el Tarot
+            desde una perspectiva humanista y evolutiva.
+            Para nosotras, sus símbolos son
             herramientas para conocerse en mayor profundidad,
             explorar preguntas y despertar la conciencia.
             Usar el Tarot significa establecer
@@ -710,7 +710,7 @@
 
           <ul>
             <li>
-              Curso completo</strong>: 100€ (50€ si repites la experiencia).
+              <strong>Curso completo</strong>: 100€ (50€ si repites la experiencia).
               Pago por transferencia bancaria.
             </li>
             <li>
@@ -719,7 +719,7 @@
               de contenido adicional para seguir profundizando.
               No es necesario para seguir el curso. También puedes pedirnos
               el manual sin necesidad de apuntarte al curso, escribiéndonos
-              a elcaminodelos22arcanos@gmail.com
+              a: elcaminodelos22arcanos@gmail.com
             </li>
           </ul>
 
@@ -729,7 +729,7 @@
 
         <div style="
           display: grid;
-          grid-template-columns: repeat(2, minmax(0, 1fr));
+          grid-template-columns: 2fr 1fr;
           gap: 12px;
           margin-top: 32px;
         ">
@@ -975,6 +975,67 @@
 
     document.getElementById('year').textContent =
       new Date().getFullYear();
+
+    
+    /* ========================================
+      NAVEGACIÓN POR SWIPE EN MÓVILES
+      ======================================== */
+
+    const swipeArea = document.querySelector('main');
+
+    let touchStartX = 0;
+    let touchStartY = 0;
+
+    swipeArea.addEventListener('touchstart', (event) => {
+      if (event.touches.length !== 1) return;
+
+      touchStartX = event.touches[0].clientX;
+      touchStartY = event.touches[0].clientY;
+    }, { passive: true });
+
+    swipeArea.addEventListener('touchend', (event) => {
+      if (event.changedTouches.length !== 1) return;
+
+      // Solo activar el gesto en pantallas pequeñas
+      if (window.innerWidth > 650) return;
+
+      const touchEndX = event.changedTouches[0].clientX;
+      const touchEndY = event.changedTouches[0].clientY;
+
+      const deltaX = touchEndX - touchStartX;
+      const deltaY = touchEndY - touchStartY;
+
+      // Evitar confundir el scroll vertical con un swipe
+      if (Math.abs(deltaX) < 60) return;
+      if (Math.abs(deltaX) < Math.abs(deltaY) * 1.3) return;
+
+      // No navegar si el gesto se hace sobre un enlace
+      // o un control interactivo
+      const target = event.target;
+
+      if (target.closest('a, button, input, textarea, select')) {
+        return;
+      }
+
+      const currentIndex = tabs.findIndex(
+        (tab) => tab.getAttribute('aria-selected') === 'true'
+      );
+
+      if (currentIndex === -1) return;
+
+      let nextIndex;
+
+      if (deltaX < 0) {
+        // Deslizar hacia la izquierda: pestaña siguiente
+        nextIndex = (currentIndex + 1) % tabs.length;
+      } else {
+        // Deslizar hacia la derecha: pestaña anterior
+        nextIndex = (currentIndex - 1 + tabs.length) % tabs.length;
+      }
+
+      activateTab(tabs[nextIndex]);
+    }, { passive: true });
+    
   </script>
 
 </body>
