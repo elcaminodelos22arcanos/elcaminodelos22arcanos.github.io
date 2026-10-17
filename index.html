@@ -283,6 +283,28 @@
       margin-top: 0;
     }
 
+    /* Imagenes manual */
+
+    .cuadros {
+      display: flex;
+      align-items: flex-start;
+      gap: 0;
+      margin-top: 40px;
+    }
+
+    .cuadros img {
+      display: block;
+      height: auto;
+      max-width: 100%;
+    }
+
+    .cuadros img:first-child {
+      width: 60%;
+    }
+
+    .cuadros img:last-child {
+      width: 40%;
+    }
 
 /* ========================================
    PESTAÑA 4: CONTACTO Y PERSONAS
@@ -725,45 +747,9 @@
 
         </div>
 
-        <!-- IMÁGENES AL FINAL DE LA PESTAÑA -->
-
-        <div style="
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          gap: 12px;
-          margin-top: 32px;
-          width: 100%;
-        ">
-
-          <img
-            src="images/cuad1.jpg"
-            alt=""
-            style="
-              display: block;
-              height: 450px;
-              width: 337px;
-              max-width: calc(100% - 12px);
-              object-fit: contain;
-              flex-shrink: 1;
-            "
-            loading="lazy"
-          >
-
-          <img
-            src="images/cuad2.jpg"
-            alt=""
-            style="
-              display: block;
-              height: 225px;
-              width: auto;
-              max-width: calc(100% - 12px);
-              object-fit: contain;
-              flex-shrink: 1;
-            "
-            loading="lazy"
-          >
-
+        <div class="cuadros">
+          <img src="images/cuad1.jpg" alt="Manual1">
+          <img src="images/cuad2.jpg" alt="Manual2">
         </div>
 
       </section>
