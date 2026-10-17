@@ -728,8 +728,9 @@
         <!-- IMÁGENES AL FINAL DE LA PESTAÑA -->
 
         <div style="
-          display: grid;
-          grid-template-columns: 2fr 1fr;
+          display: flex;
+          align-items: stretch;
+          justify-content: center;
           gap: 12px;
           margin-top: 32px;
         ">
@@ -739,9 +740,10 @@
             alt=""
             style="
               display: block;
-              width: 100%;
-              height: auto;
-              border-radius: 4px;
+              height: 280px;
+              width: auto;
+              max-width: calc(66.666% - 6px);
+              object-fit: contain;
             "
             loading="lazy"
           >
@@ -751,9 +753,10 @@
             alt=""
             style="
               display: block;
-              width: 100%;
-              height: auto;
-              border-radius: 4px;
+              height: 280px;
+              width: auto;
+              max-width: calc(33.333% - 6px);
+              object-fit: contain;
             "
             loading="lazy"
           >
