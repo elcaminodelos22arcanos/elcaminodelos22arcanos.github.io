@@ -729,10 +729,11 @@
 
         <div style="
           display: flex;
-          align-items: stretch;
+          align-items: center;
           justify-content: center;
           gap: 12px;
           margin-top: 32px;
+          width: 100%;
         ">
 
           <img
@@ -742,8 +743,9 @@
               display: block;
               height: 280px;
               width: auto;
-              max-width: calc(66.666% - 6px);
+              max-width: calc(100% - 12px);
               object-fit: contain;
+              flex-shrink: 1;
             "
             loading="lazy"
           >
@@ -755,8 +757,9 @@
               display: block;
               height: 280px;
               width: auto;
-              max-width: calc(33.333% - 6px);
+              max-width: calc(100% - 12px);
               object-fit: contain;
+              flex-shrink: 1;
             "
             loading="lazy"
           >
@@ -764,7 +767,6 @@
         </div>
 
       </section>
-
 
       <!-- PESTAÑA 4: CONTACTO -->
 
